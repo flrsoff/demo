@@ -1,0 +1,12 @@
+[Trigger]
+Operation=Install
+Operation=Upgrade
+Type=Package
+Target=nvidia-container-toolkit
+Target=libnvidia-container
+Target=linux
+
+[Action]
+Description=Update nvidia-container-toolkit
+When=PostTransaction
+Exec=/bin/sh -c 'nvidia-ctk runtime configure --runtime=docker; systemctl restart docker'

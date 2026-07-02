@@ -1,0 +1,15 @@
+#!/bin/sh
+SCRIPT_PATH=$(readlink -f "$0")
+VMWARE_HOST_MODULES_DIR="$(dirname $SCRIPT_PATH)/vmware-host-modules-workstation-17.6.3"
+
+cd "$VMWARE_HOST_MODULES_DIR" || exit 1
+
+sudo make clean && \
+sudo make && \
+sudo make install && \
+sudo depmod -a && \
+sudo modprobe vmmon && \
+sudo modprobe vmnet
+
+echo "Done!"
+exit 0
